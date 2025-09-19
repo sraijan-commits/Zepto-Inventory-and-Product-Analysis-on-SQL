@@ -42,28 +42,18 @@ Here are a couple of examples of the SQL queries used for the analysis.
 Query 1: Calculate Estimated Revenue per Category
 This query calculates the potential revenue from available stock for each product category, helping to identify the most valuable categories.
 
-SELECT
-    category,
-    SUM(discountedSP * availableQuantity) AS Total_Revenue
-FROM
-    zepto
-GROUP BY
-    category
-ORDER BY
-    Total_Revenue DESC;
+SELECT category,
+SUM(discountedSP * availableQuantity) AS Total_Revenue
+FROM zepto
+GROUP BY category
+ORDER BY Total_Revenue DESC;
 
 Query 2: Find Value-for-Money Products (Price per Gram)
 This query identifies products that offer the best value to customers by calculating the price per unit of weight.
 
-SELECT
-    name,
-    discountedSP,
-    weight_in_grams,
-    ROUND(discountedSP / weight_in_grams, 2) AS Price_per_Gram
-FROM
-    zepto
-WHERE
-    weight_in_grams >= 100
-ORDER BY
-    Price_per_Gram ASC
+SELECT name, discountedSP,weight_in_grams,
+ROUND(discountedSP / weight_in_grams, 2) AS Price_per_Gram
+FROM zepto
+WHERE weight_in_grams >= 100
+ORDER BY Price_per_Gram ASC
 LIMIT 10;
